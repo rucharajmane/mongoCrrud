@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Button from "@mui/material/Button";
 
 export default function EditTopicForm({ id, title, description }) {
   const [newTitle, setNewTitle] = useState(title);
@@ -33,26 +34,44 @@ export default function EditTopicForm({ id, title, description }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-col gap-4 bg-white shadow-md rounded-lg p-6 max-w-lg mx-auto"
+    >
+      <h2 className="text-2xl font-semibold text-gray-700">Edit Topic</h2>
+
       <input
         onChange={(e) => setNewTitle(e.target.value)}
         value={newTitle}
-        className="border border-slate-500 px-8 py-2"
+        className="border border-slate-400 rounded-md px-4 py-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
         type="text"
         placeholder="Topic Title"
       />
 
-      <input
+      <textarea
         onChange={(e) => setNewDescription(e.target.value)}
         value={newDescription}
-        className="border border-slate-500 px-8 py-2"
-        type="text"
+        className="border border-slate-400 rounded-md px-4 py-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 h-32"
         placeholder="Topic Description"
-      />
+      ></textarea>
 
-      <button className="bg-green-600 font-bold text-white py-3 px-6 w-fit">
+      <Button
+        type="submit"
+        variant="contained"
+        sx={{
+          backgroundColor: "#1d4ed8",
+          color: "#000000",
+          fontWeight: "bold",
+          padding: "10px 20px",
+          borderRadius: "8px",
+          "&:hover": {
+            backgroundColor: "#1d4ed8",
+            color: "#ffffff"
+          },
+        }}
+      >
         Update Topic
-      </button>
+      </Button>
     </form>
   );
 }

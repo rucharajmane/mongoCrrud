@@ -1,6 +1,8 @@
 "use client";
 
-import { HiOutlineTrash } from "react-icons/hi";
+import React from 'react';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { IconButton } from '@mui/material';
 import { useRouter } from "next/navigation";
 
 export default function RemoveBtn({ id }) {
@@ -20,8 +22,8 @@ export default function RemoveBtn({ id }) {
   };
 
   return (
-    <button onClick={removeTopic} className="text-red-400">
-      <HiOutlineTrash size={24} />
-    </button>
+    <IconButton aria-label="delete" className="bg-red" size="large" onClick={removeTopic}>
+      <DeleteIcon sx={{ color: 'red' }} />
+    </IconButton>
   );
 }

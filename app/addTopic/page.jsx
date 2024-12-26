@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Button from "@mui/material/Button";
 
 export default function AddTopic() {
   const [title, setTitle] = useState("");
@@ -37,29 +38,44 @@ export default function AddTopic() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-col gap-4 bg-gray-100 shadow-md rounded-lg p-6 max-w-lg mx-auto mt-8"
+    >
+      <h2 className="text-2xl font-bold text-gray-700 mb-2">Add a New Topic</h2>
+
       <input
         onChange={(e) => setTitle(e.target.value)}
         value={title}
-        className="border border-slate-500 px-8 py-2"
+        className="border border-gray-400 rounded-md px-4 py-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
         type="text"
         placeholder="Topic Title"
       />
 
-      <input
+      <textarea
         onChange={(e) => setDescription(e.target.value)}
         value={description}
-        className="border border-slate-500 px-8 py-2"
-        type="text"
+        className="border border-gray-400 rounded-md px-4 py-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 h-32"
         placeholder="Topic Description"
-      />
+      ></textarea>
 
-      <button
+      <Button
         type="submit"
-        className="bg-green-600 font-bold text-white py-3 px-6 w-fit"
+        variant="contained"
+        sx={{
+          backgroundColor: "#1e40af",
+          color: "#000000",
+          fontWeight: "bold",
+          padding: "10px 20px",
+          borderRadius: "8px",
+          "&:hover": {
+            backgroundColor: "#1d4ed8",
+            color: "#ffffff"
+          },
+        }}
       >
         Add Topic
-      </button>
+      </Button>
     </form>
   );
 }

@@ -22,25 +22,33 @@ export default async function TopicsList() {
   const { topics } = await getTopics();
 
   return (
-    <>
-      {topics.map((t) => (
-        <div
-          key={t._id}
-          className="p-4 border border-slate-300 my-3 flex justify-between gap-5 items-start"
-        >
-          <div>
-            <h2 className="font-bold text-2xl">{t.title}</h2>
-            <div>{t.description}</div>
-          </div>
+    <div className="max-w-3xl mx-auto mt-8">
+      {topics.length > 0 ? (
+        topics.map((t) => (
+          <div
+            key={t._id}
+            className="p-4 border border-slate-300 rounded-lg shadow-sm my-3 flex justify-between items-start gap-5 bg-white hover:shadow-md transition-shadow duration-300"
+          >
+            <div>
+              <h2 className="font-bold text-xl text-gray-800">{t.title}</h2>
+              <p className="text-gray-600 mt-1">{t.description}</p>
+            </div>
 
-          <div className="flex gap-2">
-            <RemoveBtn id={t._id} />
-            <Link href={`/editTopic/${t._id}`}>
-              <HiPencilAlt size={24} />
-            </Link>
+            <div className="flex justify-center items-center gap-2">
+              <RemoveBtn id={t._id} />
+              <Link href={`/editTopic/${t._id}`}>
+                <HiPencilAlt
+                  size={24}
+                  className="text-blue-500 hover:text-blue-700 transition-colors duration-300"
+                  aria-label="Edit Topic"
+                />
+              </Link>
+            </div>
           </div>
-        </div>
-      ))}
-    </>
+        ))
+      ) : (
+        <p className="text-center text-gray-600">No topics found.</p>
+      )}
+    </div>
   );
 }
