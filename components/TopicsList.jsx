@@ -15,11 +15,12 @@ const getTopics = async () => {
     return res.json();
   } catch (error) {
     console.log("Error loading topics: ", error);
+    return { topics: [] }; // Return an empty array if there is an error
   }
 };
 
 export default async function TopicsList() {
-  const { topics } = await getTopics();
+  const { topics = [] } = await getTopics(); // Default to an empty array if getTopics fails
 
   return (
     <div className="max-w-3xl mx-auto mt-8">
